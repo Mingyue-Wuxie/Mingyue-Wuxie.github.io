@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>生 · 日 · 快 · 乐</title>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.min.js"></script>
+    <style>
+        html {
+            text-align: center;
+            height: 100%;
+            background-color: #555555;
+        }
+
+        img {
+            position: absolute;
+            left: -90%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        section {
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            box-sizing: border-box;
+            width: 100%;
+            left: 0;
+            top: 100%;
+
+        }
+
+        @keyframes first {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-2550px);
+            }
+        }
+
+        li {
+            list-style: none;
+            line-height: 40px;
+            color: #000000;
+            font-weight: 500;
+            text-shadow: 0px 0px 2px white;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./image/th.jpg" height="100%" alt="">
+    <section id="section">
+        <audio id="audio" src="./mpeg/卢恒宇,李姝洁 - 写给父亲.mp3" autoplay></audio>
+        
+        <ul id="ul">
+            <li>作曲 : 高铭 </li>
+            <li>作词 : 卢恒宇 </li>
+            <li>我总是在闯祸 </li>
+            <li>但你从来没有阻止过我 </li>
+            <li>因为你不想阻止成长的快乐 </li>
+            <li>儿子长大了 </li>
+            <li>让我像个男子汉一样敢作敢当 </li>
+            <li>让我把责任扛在肩上 </li>
+            <li>别人家的孩子都是好好学习天天向上 </li>
+            <li>他们听话 他们是天下小孩的榜样 </li>
+            <li>我和他们不一样 </li>
+            <li>我是哪吒 </li>
+            <li>生下来就是九尺大个儿的芭比金刚 </li>
+            <li>我也知道 </li>
+            <li>你烦恼过 怀疑过 和妈妈吵过 </li>
+            <li>但你从来没有放弃过 </li>
+            <li>你说算了算了就当生了个强壮点的女儿 </li>
+            <li>但我是男子汉 </li>
+            <li>我能敢作敢当 把责任扛在肩上 </li>
+            <li>我看着你 一朝一夕 </li>
+            <li>我学到了 一点一滴 </li>
+            <li>我的每一个动作都有你的印记 </li>
+            <li>是你教会了我真正的勇气 </li>
+            <li>是你教会了我 要顶天立地 </li>
+            <li>我总是在闯祸 </li>
+            <li>但你从来没有阻止过我 </li>
+            <li>因为你不想阻止成长的快乐 </li>
+            <li>儿子长大了 </li>
+            <li>让我像个男子汉一样敢作敢当 </li>
+            <li>让我把责任扛在肩上 </li>
+            <li>别人家的孩子都是好好学习天天向上 </li>
+            <li>他们听话 他们是天下小孩的榜样 </li>
+            <li>我和他们不一样 </li>
+            <li>我是哪吒 </li>
+            <li>生下来就是九尺大个儿的芭比金刚 </li>
+            <li>我也知道 </li>
+            <li>你烦恼过 怀疑过 和妈妈吵过 </li>
+            <li>但你从来没有放弃过 </li>
+            <li>你说算了算了就当生了个强壮点的女儿 </li>
+            <li>但我是男子汉 </li>
+            <li>我能敢作敢当 把责任扛在肩上 </li>
+            <li>我看着你 一朝一夕 </li>
+            <li>我学到了 一点一滴 </li>
+            <li>我的每一个动作都有你的印记 </li>
+            <li>是你教会了我真正的勇气 </li>
+            <li>是你教会了我 要顶天立地</li>
+
+
+            <li>
+                <h4>年年有今日</h4>
+            </li>
+            <li>
+                <h4>岁岁有今朝</h4>
+            </li>
+            <li>
+                <h1>生日快乐</h1>
+            </li>
+
+            <li>儿子送上</li>
+        </ul>
+    </section>
+    <script>
+        var audio = document.getElementById('audio');
+        audio.oncanplay = () => {
+            $('#ul').css({
+                'animation-duration': audio.duration + 's',
+                'animation-name': 'first',
+                'animation-timing-function': 'linear',
+                'animation-fill-mode': 'both'
+            });
+        }
+    </script>
+</body>
+
+</html>
