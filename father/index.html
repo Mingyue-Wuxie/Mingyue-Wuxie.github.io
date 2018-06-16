@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Document</title>
+	<title>给父亲</title>
 	<style>
 		body {
 			margin: auto;
@@ -33,7 +33,7 @@
 		.position {
 			margin: auto;
 			text-align: center;
-			position: absolute;
+			position: fixed;
 			top: 50%;
 			left: 0;
 			right: 0;
@@ -81,21 +81,18 @@
 	</section>
 	<script src="./static/script/script.js"></script>
 	<script>
-		onload = function () {
-			var c = new canvas(document.getElementById('canvas'), {
-				images: ['./static/image/000.png', './static/image/001.png', './static/image/002.png', './static/image/003.png',
-					'./static/image/004.png'
-				]
-			})
-			document.getElementById('audio').play()
-			var message = document.querySelector('.message')
-			const time = 3
-			for (const key in message.children) {
-				if (message.children.hasOwnProperty(key)) {
-					const element = message.children[key];
-					element.className = 'position'
-					element.style.animationDelay = `${key * time}s`
-				}
+		var c = new canvas(document.getElementById('canvas'), {
+			images: ['./static/image/000.png', './static/image/001.png', './static/image/002.png', './static/image/003.png',
+				'./static/image/004.png'
+			]
+		})
+		var message = document.querySelector('.message')
+		const time = 3
+		for (const key in message.children) {
+			if (message.children.hasOwnProperty(key)) {
+				const element = message.children[key];
+				element.className = 'position'
+				element.style.animationDelay = `${key * time}s`
 			}
 		}
 	</script>
