@@ -13,8 +13,9 @@ class canvas {
 
 	public canvas: CanvasRenderingContext2D
 	public config: canvasconfig
-	public images: HTMLImageElement[] = []
+	public images: images[] = []
 	public imgs: image[] = []
+	public loading: boolean = false
 
 	public resize(element: HTMLElement, canvas: HTMLCanvasElement): void {
 		addEventListener('resize', function () {
@@ -24,11 +25,17 @@ class canvas {
 	}
 
 	public loadimage(): void {
-		this.config.images.forEach(img => {
+		this.config.images.forEach((img, index) => {
 			const image = new Image()
 			image.src = img
-			this.images.push(image)
+			this.images.push({ image: image, load: false })
 		})
+		this.images.forEach(image => {
+			image.image.onload = () => {
+				image.load = true
+			}
+		});
+
 		for (let index = 0; index < parseInt((innerWidth / 5 + innerHeight / 5).toFixed()); index++) {
 			const rerotate = Math.random() - .5 > 0 ? 1 : -1
 			this.imgs.push({
@@ -58,20 +65,34 @@ class canvas {
 			config.x = Math.random() * innerWidth * 2 - .5 * innerWidth
 			config.imgnum = Math.round(Math.random() * (this.images.length - 1))
 		}
-		this.canvas.translate(config.x + this.images[config.imgnum].width / 2, config.y + this.images[config.imgnum].height / 2)
+		this.canvas.translate(config.x + this.images[config.imgnum].image.width / 2, config.y + this.images[config.imgnum].image.height / 2)
 		this.canvas.scale(config.scale, config.scale)
 		this.canvas.rotate(config.rotate)
-		this.canvas.translate(-(config.x + this.images[config.imgnum].width / 2), -(config.y + this.images[config.imgnum].height / 2))
-		this.canvas.drawImage(this.images[config.imgnum], config.x, config.y)
+		this.canvas.translate(-(config.x + this.images[config.imgnum].image.width / 2), -(config.y + this.images[config.imgnum].image.height / 2))
+		this.canvas.drawImage(this.images[config.imgnum].image, config.x, config.y)
 		this.canvas.restore()
 	}
 
 	public restore = () => {
+		if (!this.loading) {
+			let load: boolean = true
+			this.images.forEach(image => {
+				if (!image.load) return load = false
+			});
+			if (load) {
+				this.loading = true
+				setTimeout(this.load, 2000);
+			}
+		}
 		this.canvas.clearRect(0, 0, this.canvas.canvas.width, this.canvas.canvas.height)
 		this.imgs.forEach(img => {
 			this.showimage(img)
 		})
 		requestAnimationFrame(this.restore)
+	}
+
+	public load() {
+		console.log(this)
 	}
 }
 
@@ -89,4 +110,9 @@ interface image {
 	rex: number
 	y: number
 	rey: number
+}
+
+interface images {
+	image: HTMLImageElement
+	load: boolean
 }

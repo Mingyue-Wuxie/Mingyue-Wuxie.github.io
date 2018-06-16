@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>给父亲</title>
+	<title>Document</title>
 	<style>
 		body {
 			margin: auto;
@@ -30,6 +30,10 @@
 			background-position: center;
 		}
 
+		.message {
+			display: none
+		}
+
 		.position {
 			margin: auto;
 			text-align: center;
@@ -52,12 +56,45 @@
 				opacity: 1;
 				transform: translateY(-50%) scale(1.2)
 			}
-			70% {
-				opacity: 1;
-			}
 			100% {
 				opacity: 0;
-				visibility: hidden;
+				transform: translateY(-50%) scale(1)
+			}
+		}
+
+		.load {
+			position: fixed;
+			padding: 20px;
+			border-radius: 5px;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			background-color: rgba(0, 0, 0, .8)
+		}
+
+		.load>span {
+			display: block;
+			margin: auto;
+			height: 30px;
+			width: 30px;
+			border-radius: 50%;
+			border: solid 5px white;
+			border-right-color: transparent;
+			animation: load 1s linear infinite;
+		}
+
+		.load>p {
+			margin-bottom: auto;
+			color: white;
+			margin-top: .5em;
+		}
+
+		@keyframes load {
+			form {
+				transform: rotate(0deg)
+			}
+			to {
+				transform: rotate(360deg)
 			}
 		}
 	</style>
@@ -79,6 +116,10 @@
 		<p>希望今年能够如愿以偿吧</p>
 		<p>最后：父亲节快乐</p>
 	</section>
+	<section class="load">
+		<span></span>
+		<p>加载中...</p>
+	</section>
 	<script src="./static/script/script.js"></script>
 	<script>
 		var c = new canvas(document.getElementById('canvas'), {
@@ -86,14 +127,19 @@
 				'./static/image/004.png'
 			]
 		})
-		var message = document.querySelector('.message')
-		const time = 3
-		for (const key in message.children) {
-			if (message.children.hasOwnProperty(key)) {
-				const element = message.children[key];
-				element.className = 'position'
-				element.style.animationDelay = `${key * time}s`
+
+		c.load = function () {
+			var message = document.querySelector('.message')
+			const time = 3
+			for (const key in message.children) {
+				if (message.children.hasOwnProperty(key)) {
+					const element = message.children[key];
+					element.className = 'position'
+					element.style.animationDelay = `${key * time}s`
+				}
 			}
+			message['style']['display'] = 'block'
+			document.querySelector('.load')['style']['display'] = 'none'
 		}
 	</script>
 </body>
