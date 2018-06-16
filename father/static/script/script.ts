@@ -81,7 +81,7 @@ class canvas {
 			});
 			if (load) {
 				this.loading = true
-				setTimeout(this.load, 2000);
+				setTimeout(this.load, 500);
 			}
 		}
 		this.canvas.clearRect(0, 0, this.canvas.canvas.width, this.canvas.canvas.height)

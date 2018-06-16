@@ -14,7 +14,7 @@ var canvas = /** @class */ (function () {
                 });
                 if (load_1) {
                     _this.loading = true;
-                    setTimeout(_this.load, 2000);
+                    setTimeout(_this.load, 500);
                 }
             }
             _this.canvas.clearRect(0, 0, _this.canvas.canvas.width, _this.canvas.canvas.height);
